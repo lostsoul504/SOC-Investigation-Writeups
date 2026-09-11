@@ -106,7 +106,7 @@ First, we analyze the raw `sample1.eml` file by opening it in VS Code. Then we f
 For no. of recipients, we can check the *cc* or *bcc* headers, but since there aren't any, we can determine that there was only 1 recipient.
 
 
-![[09_archives_ccdl1/1_phishing_and_email_security/1.5_capstone_lab/_resources/phishing_and_email_security_capstone_lab/49f1cc8929ac93ae9c96037ec195d6d0_MD5.png]]
+![[_resources/phishing_and_email_security_capstone_lab/49f1cc8929ac93ae9c96037ec195d6d0_MD5.png]]
 
 
 
