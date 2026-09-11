@@ -106,7 +106,7 @@ First, we analyze the raw `sample1.eml` file by opening it in VS Code. Then we f
 For no. of recipients, we can check the *cc* or *bcc* headers, but since there aren't any, we can determine that there was only 1 recipient.
 
 
-![]_resources/49f1cc8929ac93ae9c96037ec195d6d0_MD5.png
+![](_resources/49f1cc8929ac93ae9c96037ec195d6d0_MD5.png)
 
 
 
@@ -114,15 +114,17 @@ For no. of recipients, we can check the *cc* or *bcc* headers, but since there a
 
 To generate a hash of the file sample2 in linux, we can simply use the command `sha256sum filename` to check for it in threat intel. We check the properties of the sample2 file by right-clicking on the icon and clicking of properties option, and determine that it is an ole-based file. Thus, we can use Oletools for further analysis of the sample2 file. Using oleid first, we get the basic information about the file first.
 
-![]_resources/c15ea99f62ec7ff9d809bac7c9a3cede_MD5.png|
-![]_resources/c15ea99f62ec7ff9d809bac7c9a3cede_MD5.png
+![](_resources/c15ea99f62ec7ff9d809bac7c9a3cede_MD5.png)
+
+
+![](_resources/c15ea99f62ec7ff9d809bac7c9a3cede_MD5.png)
 
 
 
 We can see that sample2 is an MS Word file with .docx extension, along with confirmation that there are no VBA macros present in the file. However, it does contain External Relationships, more specifically oleObject and hyperlink, which attempts to pull the said objects into the target system as soon as the file is opened.
 
 
-![]_resources/9463a66c67c44ae62bb711fea34ba7dc_MD5.png
+![](_resources/9463a66c67c44ae62bb711fea34ba7dc_MD5.png)
 
 
 
@@ -135,17 +137,17 @@ We can see that there is an *oleObject* that is linked with a suspicious link `h
 From the properties of the file, we can see that it is a OLE file, which means that it can be analyzed using Oletools. Upon using the oleid on the file, we get the basic info about the file.
 
 
-![]_resources/60876d1eb535cb971fe4f9d7ae67d838_MD5.png
+![](_resources/60876d1eb535cb971fe4f9d7ae67d838_MD5.png)
 
 
 
 As we can see that the file contains VBA macros, but no suspicious files were detected by oleid. But just for further confirmation, we check the file with olevba tool, which yields the following result.
 
 
-![]_resources/6a8d836884023371a3e61eac65245d57_MD5.png
+![](_resources/6a8d836884023371a3e61eac65245d57_MD5.png)
 
 
-![]_resources/428d32fc0ebb6b205fac65ede1e5b7d9_MD5.png
+![](_resources/428d32fc0ebb6b205fac65ede1e5b7d9_MD5.png)
 
 
 
@@ -157,53 +159,53 @@ Upon using olevba tool on sample3, we get a whole bunch of malicious indicators 
 Just like above files, first we check the properties of the sample4 file, and notice that it is an OLE 2 file, so we run oleid on it.
 
 
-![]_resources/01ef64c6fcdc39548277afc1b9edc060_MD5.png
+![](_resources/01ef64c6fcdc39548277afc1b9edc060_MD5.png)
 
 
 
 As we can see, there are no surface malicious indicators, but the file format is unrecognized and it is also encrypted, which is unusual and can be grounds for further analysis. So, we can use msoffcrypto-crack.py script to crack its password.
 
 
-![]_resources/323aef67a44690d9e6b1f2e2260ffefd_MD5.png
+![](_resources/323aef67a44690d9e6b1f2e2260ffefd_MD5.png)
 
 
 We can see that the password has been found to be VelvetSweatshop, and after cracking it, we get a decrypted file.
 
 
-![]_resources/755c2f547a59edfa67b9e60106311aee_MD5.png
+![](_resources/755c2f547a59edfa67b9e60106311aee_MD5.png)
 
 
 As we can see from its basic properties that it is a ZIP file. Newer Office documents are essentially zip archives of a collection of XML files, so we can use Oletools for analysis here.
 
 
-![]_resources/321c045526cee8c19476179c666f0a95_MD5.png
+![](_resources/321c045526cee8c19476179c666f0a95_MD5.png)
 
 
 
 We can see that the file is a MS Word document, and there are no particular malicious indicators. However, we should still not rely on a single tool and run further investigation. We can extract the Doc file's components into another directory as well as list the files extracted.
 
 
-![]_resources/a6cdefd31f83b40822a054a92e7eba7b_MD5.png
+![](_resources/a6cdefd31f83b40822a054a92e7eba7b_MD5.png)
 
 
 
 We can see now that there is a highly suspicious `.bin` in the the **/word/embeddings/** sub-directory inside. After extracting it and computing its hash, we can match it against threat intel.  And since it was inside an Office Word document, we can use Oletools, specifically oleobj against it.
 
 
-![]_resources/eb895f6879e00643244b745d5dcdaa02_MD5.png
+![](_resources/eb895f6879e00643244b745d5dcdaa02_MD5.png)
 
 
 
 We can now see that another `.zip` file has been extracted by **oleobj**. Now, compute its hash to check for threat intel, and unzip it for further analysis.
 
 
-![]_resources/ac5fa437afb983550d00c75626365dda_MD5.png
+![](_resources/ac5fa437afb983550d00c75626365dda_MD5.png)
 
 
 Now, we can see a `.lnk` file, which is highly suspicious. We can use **lnkinfo** for further analysis.
 
 
-![]_resources/a19d405a5e7cc73b09720519bc12bf3c_MD5.png
+![](_resources/a19d405a5e7cc73b09720519bc12bf3c_MD5.png)
 
 
 
