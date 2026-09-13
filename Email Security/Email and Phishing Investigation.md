@@ -1,4 +1,4 @@
- ## Lab: [Phishing & Email Security Capstone]
+ ## Lab: [Phishing & Email Security Analysis]
 
 ---
 
