@@ -1,4 +1,4 @@
- ## Lab: [Splunk Capstone]
+ ## Lab: [Splunk Investigation]
 
 ---
 
