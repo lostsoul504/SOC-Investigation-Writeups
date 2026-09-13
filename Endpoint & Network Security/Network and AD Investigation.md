@@ -1,4 +1,4 @@
- ## Lab: [Network & AD Basics Capstone]
+ ## Lab: [Network & AD Investigation]
 
 ---
 
