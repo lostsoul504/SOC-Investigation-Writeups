@@ -1,4 +1,4 @@
- ## Lab: [Phishing & Email Security Analysis]
+ ## Lab: [Phishing & Email Security Investigation]
 
 ---
 
